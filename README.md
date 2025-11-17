@@ -8,210 +8,139 @@ It integrates agentic reasoning, precedent retrieval, counter-argument generatio
 This project uses the ECHR (European Court of Human Rights) NAACL 2021 Dataset, publicly available on Kaggle.
 
 Dataset Source
+You must download the dataset manually:
 
-You must download the dataset from the original provider:
+🔗 https://www.kaggle.com/datasets/mathurinache/ecthrnaacl2021
 
-🔗 Kaggle ECHR Dataset
-https://www.kaggle.com/datasets/mathurinache/ecthrnaacl2021
-
-Files Used in This Project
-
-The following files from the dataset must be placed inside the /data folder:
-
-train.jsonl
-
-dev.jsonl
-
-test.jsonl
+Dataset Files Required
+Place these files inside the /data directory:
+-train.jsonl
+-dev.jsonl
+-test.jsonl
 
 These contain:
+-Case text
+-Conclusions
+-Violated articles
+-Metadata fields used by Argumate
 
-Legal case facts
 
-Full judgment text
+Note: These files cannot be uploaded to GitHub due to Kaggle licensing.
 
-Violated articles
-
-Conclusions
-
-Metadata fields for training the Argumate system
-
-Due to Kaggle licensing, these dataset files cannot be uploaded directly to GitHub.
-Users must download them manually from the dataset link.
-
-✨ Key Features
+✨ Features
 1. Outcome Prediction
 
 Argumate predicts:
-
-Violated Articles
-
-Whether Article(s) were breached
-
-Case-level labels from ECHR dataset
+-Violated articles
+-Whether each article was breached
+-Case-level decision outcomes
 
 2. Precedent Retrieval
 
-For each case, the system fetches supporting precedents from:
-
-Training set embeddings
-
-Similar fact-based judgments
-
-Case-law reasoning traces
+-Retrieves similar ECHR cases from training embeddings to support:
+-Evidence
+-Legal grounding
+-Past judgments
+-Case similarity reasoning
 
 3. Legal Reasoning Engine
-
-Argumate generates:
-
-Structured reasoning explanation
-
-Point-wise justification
-
-Cited precedent support
-
-Alignment with legal arguments
+Generates:
+-Detailed structured reasoning
+-Step-by-step justification
+-Precedent citations
+-Interpretation of case facts
 
 4. Confidence Scoring
 
-For each prediction, the system outputs:
+Each prediction includes:
 
-Confidence score (0–1)
-
-Reliability analysis
-
-Interpretation of uncertainty
+-Confidence score
+-Reliability estimate
+-Error likelihood analysis
 
 5. Reasoning Quality Evaluation
 
-A built-in evaluator scores:
-
-Logical coherence
-
-Precedent alignment
-
-Legal soundness
-
-Completeness
+Scores the reasoning based on:
+-Logical consistency
+-Precedent alignment
+-Argument soundness
+-Completeness
 
 6. Counter-Argument Generator
 
-Argumate automatically constructs opposing arguments, including:
+Automatically generates:
 
-Defense-side reasoning
-
-Alternative interpretations
-
-Weaknesses in predicted decision
-
-Rebuttals
+-Defense-side arguments
+-Alternative case interpretations
+-Challenges to predicted outcomes
+-Weakness analysis
 
 🧠 Agentic Workflow
 
-Argumate uses an agent-based architecture consisting of:
+Argumate uses a multi-agent architecture including:
 
-Goal Manager
+-Goal Manager
+-Context Manager
+-Evaluator Module
+-Guard Rails
+-Persistent Memory
+-Continuous Learning Loop
 
-Context Manager
-
-Evaluator Module
-
-Guard Rails / Safety Checks
-
-Persistent State Manager
-
-Continuous Learning Loop
-
-This allows the model to function like an intelligent legal agent rather than a simple classifier.
+This enables advanced autonomous behaviour similar to a legal research agent.
 
 🚀 Modes of Operation
+
 🔹 Mode 1 — Manual Input Case Mode
+User directly inputs legal case text.
+The system outputs:
 
-User inputs any legal case text directly.
-The system then outputs:
+-Predicted outcome
+-Violated articles
+-Precedents
+-Reasoning
+-Counter-arguments
+-Confidence
+-Reasoning quality score
 
-Predicted outcome
-
-Violated articles
-
-Precedents
-
-Reasoning
-
-Counter-arguments
-
-Confidence
-
-Reasoning quality score
 
 🔹 Mode 2 — Auto-Watcher Mode
-
 When enabled, Argumate continuously monitors:
-
 /new_cases/
-
-
 Whenever a new .txt case file appears:
-
-It automatically loads it
-
-Processes with the entire agent pipeline
-
-Generates results
-
-Stores outputs in:
-
+It automatically loads the file
+Processes it using the agent pipeline
+Saves results into:
 /results/
 or
 /results_agentic/
 
 
-This allows Argumate to function like a live legal assistant on new incoming cases.
-
 📂 Project Structure
 Argumate/
 │
-├── checkpoints/               # Training embeddings & state
-├── checkpoints_agentic/       # Agentic pipeline checkpoints
+├── checkpoints/               # Model states
+├── checkpoints_agentic/       # Agentic workflow memory
 │
-├── data/                      # Dataset (user must add)
-│    ├── train.jsonl
-│    ├── dev.jsonl
-│    ├── test.jsonl
+├── data/                      # Dataset directory (user must add)
+│   ├── train.jsonl
+│   ├── dev.jsonl
+│   ├── test.jsonl
 │
-├── Endpoints/                 # API utility functions
+├── Endpoints/                 # API/helper modules
 │
 ├── new_cases/                 # Folder watched in auto-watcher mode
-├── results/                   # Outputs from normal pipeline
-├── results_agentic/           # Outputs from agentic pipeline
+├── results/                   # Manual mode outputs
+├── results_agentic/           # Auto-watcher outputs
 │
-├── Argumate_final.ipynb       # Full implementation notebook
+├── Argumate_final.ipynb       # Full implementation
 └── README.md
 
-⚙️ Technologies Used
+
+⚙️ Technologies Used:
 
 Python
-
 Sentence Transformers
-
-Pandas / NumPy
-
-Agentic reasoning modules
-
-Google Colab runtime
-
-Embedding-based precedent retrieval
-
-Persistent memory for continuing sessions
-
-📜 Note on Dataset Availability
-
-Due to licensing restrictions, dataset files (train/dev/test) are not included in the GitHub repository.
-
-Users must manually download them from:
-
-https://www.kaggle.com/datasets/mathurinache/ecthrnaacl2021
-
-After downloading, place them in:
-
-/data/
+NumPy / Pandas
+Agentic workflow modules
+Embedding-based retrieval
+Google Colab environment
